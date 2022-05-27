@@ -668,7 +668,6 @@ public class Concessionaire{
 
 	public void showReportCar(){
 		System.out.println(concessionaire.generateReportCar());
-
 	}
 	public void showReportMotorcycle(){
 		System.out.println(concessionaire.generateReportMotorcycle());
@@ -693,9 +692,13 @@ public class Concessionaire{
 		String id = sc.next();
 		System.out.println(concessionaire.documentsById(id));
 	}
+
+
 	public void createParkingMap(){
 		System.out.println(concessionaire.createParkingLot());
 	}
+
+
 	public void generateReportByYears(){
 		System.out.println(concessionaire.createReportByYears());
 	}
@@ -703,7 +706,7 @@ public class Concessionaire{
 		System.out.println(concessionaire.createReportByModel());
 	}
 	public void generateReportByOcupation(){
-		double ocupation = concessionaire.lotParkingOcupation();
+		int ocupation = concessionaire.lotParkingOcupation();
 		double ocupationPercentage = (ocupation/50)*100;
 		System.out.println("La ocupacion del Parqueadero esta al " + ocupationPercentage +"%");
 

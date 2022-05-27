@@ -9,13 +9,18 @@ public class Controller{
 	private int [][] dSoat = new int [4][4];
 	private int [][] dMechanicalR = new int [4][4];
 	private int [][] dPropertyC = new int [4][4];
+	public static final int MAX_COLUMNAS = 5;
+    public static final int MAX_FILAS = 10;
 	private Vehicule [][] lotParking;
+	private int [][] parking;
 
 
 
 	public Controller(String init){
 		vehicule = new ArrayList<Vehicule>();
 		this.init = init;
+		parking = new int[MAX_FILAS][MAX_COLUMNAS];
+		lotParking = new Vehicule[MAX_FILAS][MAX_COLUMNAS];
 
 	}
 
@@ -36,6 +41,12 @@ public class Controller{
 		MechanicalReview newMechanicalR = new MechanicalReview(priceMR,yearMR,mechanicalImage,releasedGases);
 		vehicule.add(new Gasoline(numMotor, basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeVh,numDoor,polarized,capacity,typeGasoline,newSoat,newMechanicalR,propertyCard));
 		out += "Registro de carro a Gasolina exitoso";
+		for (int i=0;i<MAX_FILAS;i++){
+			for (int j=0;j<MAX_COLUMNAS;j++){
+				parking[i][0] =1;
+			}
+			
+		}
 		return out;
 
 	}
@@ -187,22 +198,17 @@ public class Controller{
 
 		return out;
 	}
+	
 	public String generateReportNew(){
 		String out = "";
 		String type = "";
 
 		for (int i=0;i<vehicule.size();i++){
 			if (vehicule.get(i) instanceof Vehicule){
-				type = vehicule.get(i).getType();
+				if(vehicule.get(i).getType().equalsIgnoreCase("Nuevo")){
+					out+=(vehicule.get(i).toString());
+				}
 			}
-		}
-
-		if (type.equals("Nuevo")) {
-			for (int i=0;i<vehicule.size();i++){
-				out += vehicule.get(i).toString();
-				
-			}
-			
 		}
 
 		return out;
@@ -213,18 +219,11 @@ public class Controller{
 
 		for (int i=0;i<vehicule.size();i++){
 			if (vehicule.get(i) instanceof Vehicule){
-				type = vehicule.get(i).getType();
+				if(vehicule.get(i).getType().equalsIgnoreCase("Usado")){
+					out+=(vehicule.get(i).toString());
+				}
 			}
 		}
-
-		if (type.equals("Usado")) {
-			for (int i=0;i<vehicule.size();i++){
-				out += vehicule.get(i).toString();
-				
-			}
-			
-		}
-
 		return out;
 	}
 
@@ -262,21 +261,21 @@ public class Controller{
 
 	public String createParkingLot(){
 
-        String out ="";
-		for (int i=0; i<10; i++){ 
-			for (int j=0;j<5;i++){
-				out += lotParking[i][j] + "";
-				
+		String print ="";
+		for (int i=0; i<MAX_FILAS; i++ ) { 
+			for (int j = 0; j <MAX_COLUMNAS; j++) { 
+				print += parking[i][j] + " ";
 			}
+			print += "\n";
 		}
+		return print;
 
-		return out;
+
     }
 
     
     public String createReportByYears(){
     	String out = "";
-
     	for (int i=0;i<vehicule.size();i++){
 
     		if (vehicule.get(i).getModel()==2014) {
@@ -299,9 +298,8 @@ public class Controller{
     			out+= "Vehiculos modelos menores a 2011: \n" + 
     			vehicule.get(i).toString();
 			}		
-
-    		
     	}
+
     	return out;
     }
 
@@ -310,41 +308,42 @@ public class Controller{
     	String oldest = "";
     	String newest = ""; 
 
-    	for (int i=0;i<10;i++){
-    		for (int j=0;j<5;i++){
+    	for (int i=0;i<MAX_FILAS;i++){
+    		for (int j=0;j<MAX_COLUMNAS;j++){
     			if (lotParking[i][j]!=null){
 
 
     				if (lotParking[i][j].getModel()==2014) {
-    					oldest += lotParking[i][j].toString();
+    					newest = lotParking[i][j].toString();
     				}
     				if (lotParking[i][j].getModel()==2013) {
-    					oldest += lotParking[i][j].toString();
+    					newest = lotParking[i][j].toString();
     				}
     				if (lotParking[i][j].getModel()==2012) {
-    					oldest += lotParking[i][j].toString();
+    					newest = lotParking[i][j].toString();
     				}
     				if (lotParking[i][j].getModel()==2011) {
-    					oldest += lotParking[i][j].toString();
+    					newest = lotParking[i][j].toString();
     				}
+    				
     				if (lotParking[i][j].getModel()<2014) {
-    					oldest += lotParking[i][j].toString();
+    					newest = lotParking[i][j].toString();
     				}
 
     				if (lotParking[i][j].getModel()<2011) {
-    					newest += lotParking[i][j].toString();
+    					oldest = lotParking[i][j].toString();
     				}
     				if (lotParking[i][j].getModel()==2011) {
-    					newest += lotParking[i][j].toString();
+    					oldest = lotParking[i][j].toString();
     				}
     				if (lotParking[i][j].getModel()==2012) {
-    					newest += lotParking[i][j].toString();
+    					oldest = lotParking[i][j].toString();
     				}
     				if (lotParking[i][j].getModel()==2013) {
-    					newest += lotParking[i][j].toString();
+    					oldest = lotParking[i][j].toString();
     				}
     				if (lotParking[i][j].getModel()==2014) {
-    					newest += lotParking[i][j].toString();
+    					oldest = lotParking[i][j].toString();
     				}
     				
     			}
@@ -356,15 +355,16 @@ public class Controller{
     	"El vehiculo mas nuevo es: " + newest + "\n";
 
     	return out;
+    
     }
 
-     public double lotParkingOcupation(){
-        double cont =0;
-        for (int i=0;i<10;i++){
-            for(int j=0;j<5;j++){
+     public int lotParkingOcupation(){
+        int cont =0;
+        for (int i=0;i<MAX_FILAS;i++){
+            for(int j=0;j<MAX_COLUMNAS;j++){
 
-                if(lotParking[i][j] != null){
-                    cont++;
+                if(parking[i][j]==1){
+                    cont=cont+1;
                 }
             }
         }
