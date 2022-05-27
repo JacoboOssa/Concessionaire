@@ -5,8 +5,9 @@ public class Gasoline extends Car implements Consume{
 	private String typeGasoline;
 
 
-	public Gasoline(double basePrice,double salePrice, String mark, int model, double cylinder, double mileage,String type, String plate, String propertyCard, String typeVh, String numDoor, String polarized, double capacity, String typeGasoline){
-		super(basePrice,salePrice,mark,model,cylinder,mileage,type,plate,propertyCard,typeVh,numDoor,polarized);
+	public Gasoline(String numMotor, double basePrice,double salePrice, String mark, int model, double cylinder, double mileage,String type, String plate,  
+		String typeVh, String numDoor, String polarized, double capacity, String typeGasoline, Soat soat, MechanicalReview mReview,String propertyCard){
+		super(numMotor, basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeVh,numDoor,polarized,soat,mReview,propertyCard);
 		this.capacity = capacity;		
 		this.typeGasoline = typeGasoline;
 	}
@@ -26,7 +27,9 @@ public class Gasoline extends Car implements Consume{
 
 	public String toString(){
 		double consumeG = calculateConsumeGasoline(capacity,cylinder);
-		return "\n Precio base: " + basePrice + "\n" +
+		return "Numero de motor (ID) " + numMotor+ "\n" +
+		"Tarjeta de propiedad: " + propertyCard + "\n" +
+		"Precio base: " + basePrice + "\n" +
 		"Precio de venta: " + salePrice + "\n" +
 		"Marca: " + mark + "\n" +
 		"Modelo: " + model + "\n" + 
@@ -34,13 +37,12 @@ public class Gasoline extends Car implements Consume{
 		"Kilometraje: " + mileage + "\n" +
 		"Tipo (Nuevo o Usado): " + type + "\n" +
 		"Placa: " + plate + "\n" +
-		"Tarjeta de propiedad: " + propertyCard + "\n" +
 		"Tipo de Vehiculo (Sedan o Camioneta): " + typeVh + "\n" +
 		"Numero de puertas: " + numDoor + "\n" +
 		polarized + "\n" + 
 		"Capacidad del tanque: " + capacity + "\n" +
 		"Tipo de Gasolina: " + typeGasoline + "\n" + 
-		"Consumo de Gasolina: " +consumeG;
+		"Consumo de Gasolina: " +consumeG + "\n";
 	}
 
 	public String getTypeVh(){

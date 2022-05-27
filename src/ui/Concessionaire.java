@@ -10,6 +10,8 @@ public class Concessionaire{
 	private Scanner sc;
 
 	public Concessionaire(){
+	//	InitModel initM = new InitModel();
+	//	concessionaire = new Controller(initM.createVehicule());
 		sc = new Scanner(System.in);
 	}
 	public void initApp(){
@@ -37,9 +39,10 @@ public class Concessionaire{
 				"Seleccione una opción para empezar\n" +
 				"(1) Para Registrar Carro\n" +
                 "(2) Para Registrar Moto\n" +
-				"(3) Mostrar Vehiculos registrados \n"+
-				"(4) Generar Informes\n"+
-				"(5) \n" +  
+				"(3) Generar Informes\n"+
+				"(4) Mostrar estado Documentos\n" +  
+				"(5) Crear mapa Parqueadero\n" +
+				"(6) Generar informes Parqueadero\n" +
 				"(0) Para salir"
 				);
 		option= sc.nextInt();
@@ -54,9 +57,9 @@ public class Concessionaire{
 			System.out.println("Bye!");
 			break;
 		case 1:
-			System.out.println("Tipo de Vehiculo a registrar: \n" +
-				"(1) Gasolina \n" +
-				"(2) Electrico \n" +
+			System.out.println("Tipo de Vehiculo a registrar:\n" +
+				"(1) Gasolina\n" +
+				"(2) Electrico\n" +
 				"(3) Hibrido");
 			int optionV = sc.nextInt();
 			switch(optionV){
@@ -75,38 +78,91 @@ public class Concessionaire{
 		case 2:
 			registerMotorcycle();   
 			break;
-	
 		case 3:
-			showVehicules();
-			
-			break;
-
-		case 4:
 			System.out.println("Generar informe:  \n" +
 			"(1) Tipo de Vehiculo \n" +
 			"(2) Tipo de Combustible \n" +
-			"(3) Auto Nuevo \n" + 
-			"(4) Auto Usado ");
+			"(3) Auto Nuevo/Usado");
 			int optionInf = sc.nextInt();
 			switch (optionInf){
 			case 1:
+				System.out.println("(1) Carro\n" +
+					"(2) Moto");
+				int option1 = sc.nextInt();
+				switch(option1){
+				case 1:
+					showReportCar();
+					break;
+				case 2:
+					showReportMotorcycle();
+					break;
+				}
 
 				break;
 			case 2:
+				System.out.println("(1) Gasolina\n" +
+					"(2) Electrico\n" +
+					"(3) Hibrido");
+				int option2 = sc.nextInt();
+				switch(option2){
+				case 1:
+					showReportGasoline();
+					break;
+				case 2:
+					showReportElectric();
+					break;
+				case 3:
+					showReportHybrid();
+					break;
+				}
 
 				break;
 			case 3:
+				System.out.println("(1) Nuevo\n" +
+					"(2) Usado");
+				int option3 = sc.nextInt();
+				switch(option3){
+				case 1:
+					showReportNew();
+					break;
+				case 2:
+					showReportUsed();
+					break;
+				}
 
 				break;
-
-			case 4:
-
-				break;	
 			}
+
+			break;
+
+		case 4:
+			showReportDocuments();	
 			break;
 
 		case 5:
-			
+			createParkingMap();
+			break;
+
+		case 6:
+			System.out.println("Generar informe: \n" +
+				"(1) Rango de agnos\n" +
+				"(2) Antiguedad\n" +
+				"(3) Ocupacion del Parqueadero");
+			int option4 = sc.nextInt();
+			switch(option4){
+			case 1:
+				generateReportByYears();
+				break;
+
+			case 2:
+				generateReportByModel();
+				break;
+
+			case 3:
+				generateReportByOcupation();
+				break;
+			}
+
 			break;
 		
 		default:
@@ -116,16 +172,18 @@ public class Concessionaire{
 	}
 
 	public void registerMotorcycle(){
-		double basePrice,salePrice,cylinder,mileage,capacity,consume;
-		String mark,plate,propertyCard;
-		int model,optionT,optionM;
+		double basePrice,salePrice = 0,cylinder,mileage,capacity,consume,price,coverageAmount,priceMR,releasedGases;
+		String numMotor,mark,plate;
+		int model,optionT,optionM,optionS,year,yearMR;
 		String type = "";
 		String typeM = "";
+		String propertyCard = "";
 
+		System.out.println("Ingrese el numero del motor (ID)");
+		numMotor = sc.next();
 		System.out.println("Ingrese el precio base:");
 		basePrice = sc.nextDouble();
-		System.out.println("Ingrese el precio de venta");
-		salePrice = sc.nextDouble();
+		salePrice = basePrice;
 		System.out.println("Ingrese la marca de la moto");
 		mark = sc.next();
 		System.out.println("Ingrese el modelo (año) de la moto");
@@ -144,6 +202,7 @@ public class Concessionaire{
 			break;
 		case 2:
 			type += "Usado";
+			salePrice += basePrice - (basePrice*0.02);
 			break;
 		}
 		if (optionT==1) {
@@ -152,12 +211,41 @@ public class Concessionaire{
 			System.out.println("Ingrese la placa de la moto");
 			plate = sc.next();
 		}
-		if (optionT==1){
-			propertyCard = null;
-		}else {
-			System.out.println("Ingrese la tarjeta de propiedad");
-			propertyCard = sc.next();
+
+		System.out.println("El vehiculo ha sido vendido: " + "\n" +
+			"(1) Si \n" +
+			"(2) No");
+		optionS = sc.nextInt();
+		switch(optionS){
+		case 1:
+			propertyCard = concessionaire.generatePropertyCode();
+			System.out.println(propertyCard);
+
+			break;
+		case 2:
+			break;
 		}
+		System.out.println("Ingrese el año del SOAT");
+		year = sc.nextInt();
+		System.out.println("Ingrese el precio del SOAT");
+		price = sc.nextDouble();
+		System.out.println("Ingrese la cobertura del SOAT");
+		coverageAmount = sc.nextDouble();
+		String soatImage = concessionaire.generateSoatCode();
+		System.out.println(soatImage);
+		System.out.println("Ingrese el año de la Revision-Tecnicomecanica");
+		yearMR = sc.nextInt();
+		System.out.println("Ingrese el precio de la Revision-Tecnicomecanica");
+		priceMR = sc.nextDouble();
+		System.out.println("Ingrese los niveles de gases arrojados");
+		releasedGases = sc.nextDouble();
+		String mechanicalImage = concessionaire.generateMechanicalCode();
+		System.out.println(mechanicalImage);
+
+		if (year<2022 || yearMR<2022){
+			salePrice += 500000;	
+		}
+		salePrice += salePrice + (basePrice*0.04);
 
 		System.out.println("Tipo de Moto: \n" +
 			"(1) Estandar \n" + 
@@ -181,22 +269,24 @@ public class Concessionaire{
 		}
 		System.out.println("Capacidad de Gasolina (Por galon)");
 		capacity = sc.nextDouble();
-		System.out.println(concessionaire.addMotorcycle(basePrice,salePrice,mark,model,cylinder,mileage,type,plate,propertyCard,typeM,capacity));
+		System.out.println(concessionaire.addMotorcycle(numMotor,basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeM,capacity,price,year,soatImage,coverageAmount,priceMR,yearMR,mechanicalImage,releasedGases,propertyCard));
 	}
 
 	public void registerGasolineCar(){
-		double basePrice,salePrice,cylinder,mileage,capacity,consume;
-		String mark,plate,propertyCard,numDoor;
-		int model,optionT,optionVe,optionP,optionG;
+		double basePrice,salePrice=0,cylinder,mileage,capacity,consume,price,coverageAmount,priceMR,releasedGases;
+		String numMotor, mark,plate,numDoor;
+		int model,optionT,optionVe,optionP,optionS,optionG,year,yearMR;
 		String typeGasoline ="";
 		String polarized = "";
 		String typeVh = "";
 		String type = "";
+		String propertyCard = "";
 
+		System.out.println("Ingrese el numero del motor (ID)");
+		numMotor = sc.next();
 		System.out.println("Ingrese el precio base:");
 		basePrice = sc.nextDouble();
-		System.out.println("Ingrese el precio de venta");
-		salePrice = sc.nextDouble();
+		salePrice = basePrice;
 		System.out.println("Ingrese la marca del Carro");
 		mark = sc.next();
 		System.out.println("Ingrese el modelo (año) del Carro");
@@ -215,6 +305,7 @@ public class Concessionaire{
 			break;
 		case 2:
 			type += "Usado";
+			salePrice += basePrice - (basePrice*0.10);
 			break;
 		}
 		if (optionT==1) {
@@ -223,11 +314,39 @@ public class Concessionaire{
 			System.out.println("Ingrese la placa del Carro");
 			plate = sc.next();
 		}
-		if (optionT==1){
-			propertyCard = null;
-		}else {
-			System.out.println("Ingrese la tarjeta de propiedad");
-			propertyCard = sc.next();
+
+		System.out.println("El vehiculo ha sido vendido: " + "\n" +
+			"(1) Si \n" +
+			"(2) No");
+		optionS = sc.nextInt();
+		switch(optionS){
+		case 1:
+			propertyCard = concessionaire.generatePropertyCode();
+			System.out.println(propertyCard);
+
+			break;
+		case 2:
+			break;
+		}
+		System.out.println("Ingrese el año del SOAT");
+		year = sc.nextInt();
+		System.out.println("Ingrese el precio del SOAT");
+		price = sc.nextDouble();
+		System.out.println("Ingrese la cobertura del SOAT");
+		coverageAmount = sc.nextDouble();
+		String soatImage = concessionaire.generateSoatCode();
+		System.out.println(soatImage);
+		System.out.println("Ingrese el año de la Revision-Tecnicomecanica");
+		yearMR = sc.nextInt();
+		System.out.println("Ingrese el precio de la Revision-Tecnicomecanica");
+		priceMR = sc.nextDouble();
+		System.out.println("Ingrese los niveles de gases arrojados");
+		releasedGases = sc.nextDouble();
+		String mechanicalImage = concessionaire.generateMechanicalCode();
+		System.out.println(mechanicalImage);
+
+		if (year<2022 || yearMR<2022){
+			salePrice += basePrice + 500000;	
 		}
 
 		System.out.println("Tipo de Automovil \n" + 
@@ -275,22 +394,24 @@ public class Concessionaire{
 			typeGasoline += "Diesel";
 			break;			
 		}
-		System.out.println(concessionaire.addGasolineCar(basePrice,salePrice,mark,model,cylinder,mileage,type,plate,propertyCard,typeVh,numDoor,polarized,capacity,typeGasoline));
+		System.out.println(concessionaire.addGasolineCar(numMotor, basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeVh,numDoor,polarized,capacity,typeGasoline,price,year,soatImage,coverageAmount,priceMR,yearMR,mechanicalImage,releasedGases,propertyCard));
 	}
 
 	public void registerElectricCar(){
-		double basePrice,salePrice,cylinder,mileage,batteryDuration,consume;
-		String mark,plate,propertyCard,numDoor;
-		int model,optionT,optionVe,optionP,optionC;
+		double basePrice,salePrice=0,cylinder,mileage,batteryDuration,consume,price,coverageAmount,priceMR,releasedGases;
+		String numMotor, mark,plate,numDoor;
+		int model,optionT,optionVe,optionP,optionC,year,yearMR,optionS;
 		String chargertype = "";
 		String polarized = "";
 		String typeVh = "";
 		String type = "";
+		String propertyCard = "";
 
+		System.out.println("Ingrese el numero del motor (ID)");
+		numMotor = sc.next();
 		System.out.println("Ingrese el precio base:");
 		basePrice = sc.nextDouble();
-		System.out.println("Ingrese el precio de venta");
-		salePrice = sc.nextDouble();
+		salePrice = basePrice;
 		System.out.println("Ingrese la marca del Carro");
 		mark = sc.next();
 		System.out.println("Ingrese el modelo (año) del Carro");
@@ -309,6 +430,7 @@ public class Concessionaire{
 			break;
 		case 2:
 			type += "Usado";
+			salePrice += basePrice - (basePrice*0.10);
 			break;
 		}
 		if (optionT==1) {
@@ -317,12 +439,41 @@ public class Concessionaire{
 			System.out.println("Ingrese la placa del Carro");
 			plate = sc.next();
 		}
-		if (optionT==1){
-			propertyCard = null;
-		}else {
-			System.out.println("Ingrese la tarjeta de propiedad");
-			propertyCard = sc.next();
+		
+		System.out.println("El vehiculo ha sido vendido: " + "\n" +
+			"(1) Si \n" +
+			"(2) No");
+		optionS = sc.nextInt();
+		switch(optionS){
+		case 1:
+			propertyCard = concessionaire.generatePropertyCode();
+			System.out.println(propertyCard);
+
+			break;
+		case 2:
+			break;
 		}
+		System.out.println("Ingrese el año del SOAT");
+		year = sc.nextInt();
+		System.out.println("Ingrese el precio del SOAT");
+		price = sc.nextDouble();
+		System.out.println("Ingrese la cobertura del SOAT");
+		coverageAmount = sc.nextDouble();
+		String soatImage = concessionaire.generateSoatCode();
+		System.out.println(soatImage);
+		System.out.println("Ingrese el año de la Revision-Tecnicomecanica");
+		yearMR = sc.nextInt();
+		System.out.println("Ingrese el precio de la Revision-Tecnicomecanica");
+		priceMR = sc.nextDouble();
+		System.out.println("Ingrese los niveles de gases arrojados");
+		releasedGases = sc.nextDouble();
+		String mechanicalImage = concessionaire.generateMechanicalCode();
+		System.out.println(mechanicalImage);
+
+		if (year<2022 || yearMR<2022){
+			salePrice += basePrice + 500000;	
+		}
+		salePrice += basePrice + (basePrice*0.20);
 
 		System.out.println("Tipo de Automovil \n" + 
 			"(1) Sedan \n" +
@@ -367,23 +518,25 @@ public class Concessionaire{
 		batteryDuration = sc.nextDouble();
 		
 
-		System.out.println(concessionaire.addElectricCar(basePrice,salePrice,mark,model,cylinder,mileage,type,plate,propertyCard,typeVh,numDoor,polarized,chargertype,batteryDuration));
+		System.out.println(concessionaire.addElectricCar(numMotor,basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeVh,numDoor,polarized,chargertype,batteryDuration,price,year,soatImage,coverageAmount,priceMR,yearMR,mechanicalImage,releasedGases,propertyCard));
 	}
 
 	public void registerHybridCar(){
-		double basePrice,salePrice,cylinder,mileage,batteryDuration,capacity;
-		String mark,plate,propertyCard,numDoor;
-		int model,optionT,optionVe,optionP,optionC,optionG;
+		double basePrice,salePrice=0,cylinder,mileage,batteryDuration,capacity,price,coverageAmount,priceMR,releasedGases;
+		String numMotor, mark,plate,numDoor;
+		int model,optionT,optionVe,optionP,optionC,optionG,year,yearMR,optionS;
 		String typeGasoline = "";
 		String chargertype = "";
 		String polarized = "";
 		String typeVh = "";
 		String type = "";
+		String propertyCard = "";
 
+		System.out.println("Ingrese el numero del motor (ID)");
+		numMotor = sc.next();
 		System.out.println("Ingrese el precio base:");
 		basePrice = sc.nextDouble();
-		System.out.println("Ingrese el precio de venta");
-		salePrice = sc.nextDouble();
+		salePrice = basePrice;
 		System.out.println("Ingrese la marca del Carro");
 		mark = sc.next();
 		System.out.println("Ingrese el modelo (año) del Carro");
@@ -402,6 +555,7 @@ public class Concessionaire{
 			break;
 		case 2:
 			type += "Usado";
+			salePrice += basePrice - (basePrice*0.10);
 			break;
 		}
 		if (optionT==1) {
@@ -410,12 +564,41 @@ public class Concessionaire{
 			System.out.println("Ingrese la placa del Carro");
 			plate = sc.next();
 		}
-		if (optionT==1){
-			propertyCard = null;
-		}else {
-			System.out.println("Ingrese la tarjeta de propiedad");
-			propertyCard = sc.next();
+		
+		System.out.println("El vehiculo ha sido vendido: " + "\n" +
+			"(1) Si \n" +
+			"(2) No");
+		optionS = sc.nextInt();
+		switch(optionS){
+		case 1:
+			propertyCard = concessionaire.generatePropertyCode();
+			System.out.println(propertyCard);
+
+			break;
+		case 2:
+			break;
 		}
+		System.out.println("Ingrese el año del SOAT");
+		year = sc.nextInt();
+		System.out.println("Ingrese el precio del SOAT");
+		price = sc.nextDouble();
+		System.out.println("Ingrese la cobertura del SOAT");
+		coverageAmount = sc.nextDouble();
+		String soatImage = concessionaire.generateSoatCode();
+		System.out.println(soatImage);
+		System.out.println("Ingrese el año de la Revision-Tecnicomecanica");
+		yearMR = sc.nextInt();
+		System.out.println("Ingrese el precio de la Revision-Tecnicomecanica");
+		priceMR = sc.nextDouble();
+		System.out.println("Ingrese los niveles de gases arrojados");
+		releasedGases = sc.nextDouble();
+		String mechanicalImage = concessionaire.generateMechanicalCode();
+		System.out.println(mechanicalImage);
+
+		if (year<2022 || yearMR<2022){
+			salePrice += basePrice + 500000;	
+		}
+		salePrice += basePrice + (basePrice*0.15);
 
 		System.out.println("Tipo de Automovil \n" + 
 			"(1) Sedan \n" +
@@ -476,12 +659,57 @@ public class Concessionaire{
 			typeGasoline += "Diesel";
 			break;			
 		}
-		System.out.println(concessionaire.addHybridCar(basePrice,salePrice,mark,model,cylinder,mileage,type,plate,propertyCard,typeVh,numDoor,polarized,capacity,typeGasoline,chargertype,batteryDuration));
+		System.out.println(concessionaire.addHybridCar(numMotor,basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeVh,numDoor,polarized,capacity,typeGasoline,chargertype,batteryDuration,price,year,soatImage,coverageAmount,priceMR,yearMR,mechanicalImage,releasedGases,propertyCard));
 	}
 
 	public void showVehicules(){
 		System.out.println(concessionaire.showVehicules());
 	}
+
+	public void showReportCar(){
+		System.out.println(concessionaire.generateReportCar());
+
+	}
+	public void showReportMotorcycle(){
+		System.out.println(concessionaire.generateReportMotorcycle());
+	}
+	public void showReportGasoline(){
+		System.out.println(concessionaire.generateReportGasoline());
+	}
+	public void showReportElectric(){
+		System.out.println(concessionaire.generateReportElectric());
+	}
+	public void showReportHybrid(){
+		System.out.println(concessionaire.generateReportHybrid());
+	}
+	public void showReportNew(){
+		System.out.println(concessionaire.generateReportNew());
+	}
+	public void showReportUsed(){
+		System.out.println(concessionaire.generateReportUsed());
+	}
+	public void showReportDocuments(){
+		System.out.println("Ingrese el numero de motor (ID)");
+		String id = sc.next();
+		System.out.println(concessionaire.documentsById(id));
+	}
+	public void createParkingMap(){
+		System.out.println(concessionaire.createParkingLot());
+	}
+	public void generateReportByYears(){
+		System.out.println(concessionaire.createReportByYears());
+	}
+	public void generateReportByModel(){
+		System.out.println(concessionaire.createReportByModel());
+	}
+	public void generateReportByOcupation(){
+		double ocupation = concessionaire.lotParkingOcupation();
+		double ocupationPercentage = (ocupation/50)*100;
+		System.out.println("La ocupacion del Parqueadero esta al " + ocupationPercentage +"%");
+
+	}
+
+
 
 
 

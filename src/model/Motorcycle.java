@@ -4,8 +4,9 @@ public class Motorcycle extends Vehicule implements Consume{
 	private String typeM;
 	private double capacity;
 	
-	public Motorcycle(double basePrice,double salePrice, String mark, int model, double cylinder, double mileage,String type, String plate, String propertyCard,String typeM,double capacity){
-		super(basePrice,salePrice,mark,model,cylinder,mileage,type,plate,propertyCard);
+	public Motorcycle(String numMotor, double basePrice,double salePrice, String mark, int model, double cylinder, 
+		double mileage,String type, String plate,String typeM,double capacity,Soat soat,MechanicalReview mReview,String propertyCard){
+		super(numMotor, basePrice,salePrice,mark,model,cylinder,mileage,type,plate,soat,mReview,propertyCard);
 		this.type = typeM;
 		this.capacity = capacity;
 	}
@@ -25,7 +26,9 @@ public class Motorcycle extends Vehicule implements Consume{
 
 	public String toString(){
 		double consumeG = calculateConsumeGasoline(capacity,cylinder);
-		return "\n Precio base: " + basePrice + "\n" +
+		return "Numero de motor (ID) " + numMotor+ "\n" +
+		"Tarjeta de propiedad: " + propertyCard + "\n" +
+		"Precio base: " + basePrice + "\n" +
 		"Precio de venta: " + salePrice + "\n" +
 		"Marca: " + mark + "\n" +
 		"Modelo: " + model + "\n" + 
@@ -33,7 +36,6 @@ public class Motorcycle extends Vehicule implements Consume{
 		"Kilometraje: " + mileage + "\n" +
 		"Tipo (Nuevo o Usado): " + type + "\n" +
 		"Placa: " + plate + "\n" +
-		"Tarjeta de propiedad: " + propertyCard + "\n" +
 		"Tipo de moto: " + typeM + "\n" +
 		"Capacidad del tanque: " + capacity + "\n" +
 		"Consumo de Gasolina: " +consumeG;

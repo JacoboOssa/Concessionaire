@@ -5,8 +5,9 @@ public class Electric extends Car implements Consume{
 	private double batteryDuration;
 	
 
-	public Electric(double basePrice,double salePrice, String mark, int model, double cylinder, double mileage,String type, String plate, String propertyCard, String typeVh, String numDoor, String polarized,String chargertype, double batteryDuration){
-		super(basePrice,salePrice,mark,model,cylinder,mileage,type,plate,propertyCard,typeVh,numDoor,polarized);
+	public Electric(String numMotor, double basePrice,double salePrice, String mark, int model, double cylinder, double mileage,String type, String plate,String typeVh, String numDoor, String polarized,String chargertype, double batteryDuration, Soat soat, 
+		MechanicalReview mReview,String propertyCard){
+		super(numMotor, basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeVh,numDoor,polarized,soat,mReview,propertyCard);
 		this.chargertype = chargertype;
 		this.batteryDuration = batteryDuration;
 		
@@ -33,7 +34,9 @@ public class Electric extends Car implements Consume{
 
 	public String toString(){
 		double consumeB = calculateConsumeBattery(cylinder,batteryDuration);
-		return "\n Precio base: " + basePrice + "\n" +
+		return "Numero de motor (ID) " + numMotor+ "\n" +
+		"Tarjeta de propiedad: " + propertyCard + "\n" +
+		"Precio base: " + basePrice + "\n" +
 		"Precio de venta: " + salePrice + "\n" +
 		"Marca: " + mark + "\n" +
 		"Modelo: " + model + "\n" + 
@@ -41,12 +44,11 @@ public class Electric extends Car implements Consume{
 		"Kilometraje: " + mileage + "\n" +
 		"Tipo (Nuevo o Usado): " + type + "\n" +
 		"Placa: " + plate + "\n" +
-		"Tarjeta de propiedad: " + propertyCard + "\n" +
 		"Tipo de Vehiculo (Sedan o Camioneta): " + typeVh + "\n" +
 		"Numero de puertas: " + numDoor + "\n" +
 		polarized + "\n" + 
 		"Tipo de cargador: " + chargertype + "\n" +
 		"Duracion de bateria: " + batteryDuration + "\n" + 
-		"Consumo de bateria: " + consumeB;
+		"Consumo de bateria: " + consumeB + "\n ";
 	}
 }
