@@ -38,25 +38,25 @@ public class Hybrid extends Car implements Consume{
 	public String toString(){
 		double consumeG = calculateConsumeGasoline(capacity,cylinder);
 		double consumeB = calculateConsumeBattery (cylinder,batteryDuration);
-		return "Numero de motor (ID) " + numMotor+ "\n" +
-		"Tarjeta de propiedad: " + propertyCard + "\n" +
-		"Precio base: " + basePrice + "\n" +
-		"Precio de venta: " + salePrice + "\n" +
-		"Marca: " + mark + "\n" +
-		"Modelo: " + model + "\n" + 
-		"Cilindraje: " + cylinder + "\n" +
-		"Kilometraje: " + mileage + "\n" +
-		"Tipo (Nuevo o Usado): " + type + "\n" +
-		"Placa: " + plate + "\n" +
-		"Tipo de Vehiculo (Sedan o Camioneta): " + typeVh + "\n" +
-		"Numero de puertas: " + numDoor + "\n" +
+		return "Engine number (ID) " + numMotor+ "\n" +
+		"Property card:" + propertyCard + "\n" +
+		"Base price: " + basePrice + "\n" +
+		"Sale price:" + salePrice + "\n" +
+		"Brand: " + mark + "\n" +
+		"Model: " + model + "\n" + 
+		"Cylinder capacity: " + cylinder + "\n" +
+		"Mileage: " + mileage + "\n" +
+		"Type (New or Used): " + type + "\n" +
+		"License plate: " + plate + "\n" +
+		"Vehicle Type (Sedan or Truck): " + typeVh + "\n" +
+		"Number of doors: " + numDoor + "\n" +
 		polarized + "\n" + 
-		"Capacidad del tanque: " + capacity + "\n" +
-		"Tipo de Gasolina: " + typeGasoline + "\n" + 
-		"Tipo de cargador: " + chargertype + "\n" +
-		"Duracion de bateria: " + batteryDuration + "\n" + 
-		"Consumo de Gasolina: " + consumeG + "\n" +
-		"Consumo de Bateria: " + consumeB + "\n";
+		"Tank Capacity: " + capacity + "\n" +
+		"Gasoline Type: " + typeGasoline + "\n" + 
+		"Charger Type: " + chargertype + "\n" +
+		"Battery life: " + batteryDuration + "\n" + 
+		"Gasoline consumption:" + consumeG + "\n" +
+		"Battery Consumption:" + consumeB + "\n";
 	}
 
 

@@ -13,10 +13,10 @@ public class Soat extends Document{
 	}
 
 	public String toString(){
-		return "Precio: " + price + "\n" +
-		"Año: " + year + "\n" +
-		"Codigo: " + image + "\n" +
-		"Monto De Cobertura: " + coverageAmount;
+		return "Price: " + price + "\n" +
+		"Year: " + year + "\n" +
+		"Code: " + image + "\n" +
+		"Coverage Amount: " + coverageAmount;
 	}
 
 }

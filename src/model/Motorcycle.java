@@ -26,18 +26,18 @@ public class Motorcycle extends Vehicule implements Consume{
 
 	public String toString(){
 		double consumeG = calculateConsumeGasoline(capacity,cylinder);
-		return "Numero de motor (ID) " + numMotor+ "\n" +
-		"Tarjeta de propiedad: " + propertyCard + "\n" +
-		"Precio base: " + basePrice + "\n" +
-		"Precio de venta: " + salePrice + "\n" +
-		"Marca: " + mark + "\n" +
-		"Modelo: " + model + "\n" + 
-		"Cilindraje: " + cylinder + "\n" +
-		"Kilometraje: " + mileage + "\n" +
-		"Tipo (Nuevo o Usado): " + type + "\n" +
-		"Placa: " + plate + "\n" +
-		"Tipo de moto: " + typeM + "\n" +
-		"Capacidad del tanque: " + capacity + "\n" +
-		"Consumo de Gasolina: " +consumeG;
+		return "Engine number (ID) " + numMotor+ "\n" +
+		"Property card:" + propertyCard + "\n" +
+		"Base price: " + basePrice + "\n" +
+		"Sale price:" + salePrice + "\n" +
+		"Brand: " + mark + "\n" +
+		"Model: " + model + "\n" + 
+		"Cylinder capacity: " + cylinder + "\n" +
+		"Mileage: " + mileage + "\n" +
+		"Type (New or Used): " + type + "\n" +
+		"License plate: " + plate + "\n" +
+		"Motorcycle type: " + typeM + "\n" +
+		"Tank Capacity: " + capacity + "\n" +
+		"Gasoline consume: " + consumeG;
 	}
 }

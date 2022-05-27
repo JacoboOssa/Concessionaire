@@ -15,7 +15,7 @@ public class Concessionaire{
 		sc = new Scanner(System.in);
 	}
 	public void initApp(){
-        System.out.println("Nombre Concesionario");
+        System.out.println("Dealer Name");
         String init = sc.next();
         concessionaire = new Controller(init);
     }
@@ -36,14 +36,14 @@ public class Concessionaire{
 		int option=0;
 
 		System.out.println(
-				"Seleccione una opción para empezar\n" +
-				"(1) Para Registrar Carro\n" +
-                "(2) Para Registrar Moto\n" +
-				"(3) Generar Informes\n"+
-				"(4) Mostrar estado Documentos\n" +  
-				"(5) Crear mapa Parqueadero\n" +
-				"(6) Generar informes Parqueadero\n" +
-				"(0) Para salir"
+				"Select an option to get started\n" +
+				"(1) To Register Car\n" +
+                "(2) To Register Motorcycle\n" +
+				"(3) Generate Reports\n"+
+				"(4) Show Document Status\n" +  
+				"(5) Create parking map\n" +
+				"(6) Generate Parking reports\n" +
+				"(0) To go out"
 				);
 		option= sc.nextInt();
 		sc.nextLine();
@@ -57,10 +57,10 @@ public class Concessionaire{
 			System.out.println("Bye!");
 			break;
 		case 1:
-			System.out.println("Tipo de Vehiculo a registrar:\n" +
-				"(1) Gasolina\n" +
-				"(2) Electrico\n" +
-				"(3) Hibrido");
+			System.out.println("Type of Vehicle to register:\n" +
+				"(1) Gasoline\n" +
+				"(2) Electric\n" +
+				"(3) Hybrid");
 			int optionV = sc.nextInt();
 			switch(optionV){
 			case 1:
@@ -79,15 +79,15 @@ public class Concessionaire{
 			registerMotorcycle();   
 			break;
 		case 3:
-			System.out.println("Generar informe:  \n" +
-			"(1) Tipo de Vehiculo \n" +
-			"(2) Tipo de Combustible \n" +
-			"(3) Auto Nuevo/Usado");
+			System.out.println("Generate report:\n" +
+			"(1) Vehicle Type\n" +
+			"(2) Fuel type \n" +
+			"(3) New/Used Car");
 			int optionInf = sc.nextInt();
 			switch (optionInf){
 			case 1:
-				System.out.println("(1) Carro\n" +
-					"(2) Moto");
+				System.out.println("(1) Car\n" +
+					"(2) Motorcycle");
 				int option1 = sc.nextInt();
 				switch(option1){
 				case 1:
@@ -100,9 +100,9 @@ public class Concessionaire{
 
 				break;
 			case 2:
-				System.out.println("(1) Gasolina\n" +
-					"(2) Electrico\n" +
-					"(3) Hibrido");
+				System.out.println("(1) Gasoline\n" +
+					"(2) Electric\n" +
+					"(3) Hybrid");
 				int option2 = sc.nextInt();
 				switch(option2){
 				case 1:
@@ -118,8 +118,8 @@ public class Concessionaire{
 
 				break;
 			case 3:
-				System.out.println("(1) Nuevo\n" +
-					"(2) Usado");
+				System.out.println("(1) New\n" +
+					"(2) Used");
 				int option3 = sc.nextInt();
 				switch(option3){
 				case 1:
@@ -144,10 +144,10 @@ public class Concessionaire{
 			break;
 
 		case 6:
-			System.out.println("Generar informe: \n" +
-				"(1) Rango de agnos\n" +
-				"(2) Antiguedad\n" +
-				"(3) Ocupacion del Parqueadero");
+			System.out.println("Generate report: \n" +
+				"(1) range of years\n" +
+				"(2) Antiquity\n" +
+				"(3) Parking Lot Occupation");
 			int option4 = sc.nextInt();
 			switch(option4){
 			case 1:
@@ -166,7 +166,7 @@ public class Concessionaire{
 			break;
 		
 		default:
-			System.out.println("Error, opción no válida");
+			System.out.println("Error, invalid option");
 		
 		}
 	}
@@ -179,41 +179,41 @@ public class Concessionaire{
 		String typeM = "";
 		String propertyCard = "";
 
-		System.out.println("Ingrese el numero del motor (ID)");
+		System.out.println("Enter the engine number (ID)");
 		numMotor = sc.next();
-		System.out.println("Ingrese el precio base:");
+		System.out.println("Enter the base price:");
 		basePrice = sc.nextDouble();
 		salePrice = basePrice;
-		System.out.println("Ingrese la marca de la moto");
+		System.out.println("Enter the brand of the motorcycle");
 		mark = sc.next();
-		System.out.println("Ingrese el modelo (año) de la moto");
+		System.out.println("Enter the model (year) of the motorcycle");
 		model = sc.nextInt();
-		System.out.println("Ingrese el cilindraje de la moto");
+		System.out.println("Enter the cylinder capacity of the motorcycle");
 		cylinder = sc.nextDouble();
-		System.out.println("Ingrese el kilometraje de la moto");
+		System.out.println("Enter the mileage of the motorcycle");
 		mileage = sc.nextDouble();
-		System.out.println("El vehiculo es: \n" +
-		"(1) Nuevo \n" +
-		"(2) Usado" );
+		System.out.println("The vehicle is: \n" +
+		"(1) New \n" +
+		"(2) Used" );
 		optionT = sc.nextInt();
 		switch(optionT){
 		case 1:
-			type += "Nuevo";
+			type += "New";
 			break;
 		case 2:
-			type += "Usado";
+			type += "Used";
 			salePrice += basePrice - (basePrice*0.02);
 			break;
 		}
 		if (optionT==1) {
 			plate = null;
 		}else{
-			System.out.println("Ingrese la placa de la moto");
+			System.out.println("Enter the plate of the motorcycle");
 			plate = sc.next();
 		}
 
-		System.out.println("El vehiculo ha sido vendido: " + "\n" +
-			"(1) Si \n" +
+		System.out.println("The vehicle has been sold: " + "\n" +
+			"(1) Yes \n" +
 			"(2) No");
 		optionS = sc.nextInt();
 		switch(optionS){
@@ -225,19 +225,19 @@ public class Concessionaire{
 		case 2:
 			break;
 		}
-		System.out.println("Ingrese el año del SOAT");
+		System.out.println("Enter the year of the SOAT");
 		year = sc.nextInt();
-		System.out.println("Ingrese el precio del SOAT");
+		System.out.println("Enter the price of the SOAT");
 		price = sc.nextDouble();
-		System.out.println("Ingrese la cobertura del SOAT");
+		System.out.println("Enter the SOAT coverage");
 		coverageAmount = sc.nextDouble();
 		String soatImage = concessionaire.generateSoatCode();
 		System.out.println(soatImage);
-		System.out.println("Ingrese el año de la Revision-Tecnicomecanica");
+		System.out.println("Enter the year of the Technical-Mechanical Revision");
 		yearMR = sc.nextInt();
-		System.out.println("Ingrese el precio de la Revision-Tecnicomecanica");
+		System.out.println("Enter the price of the Revision-Technical-Mechanical");
 		priceMR = sc.nextDouble();
-		System.out.println("Ingrese los niveles de gases arrojados");
+		System.out.println("Enter the levels of released gases");
 		releasedGases = sc.nextDouble();
 		String mechanicalImage = concessionaire.generateMechanicalCode();
 		System.out.println(mechanicalImage);
@@ -247,18 +247,18 @@ public class Concessionaire{
 		}
 		salePrice += salePrice + (basePrice*0.04);
 
-		System.out.println("Tipo de Moto: \n" +
-			"(1) Estandar \n" + 
-			"(2) Deportiva \n" +
+		System.out.println("Motorcycle Type: \n" +
+			"(1) Standard \n" + 
+			"(2) Sporty \n" +
 			"(3) Scooter \n" + 
 			"(4) Cross \n");
 		optionM = sc.nextInt();
 		switch(optionM){
 		case 1:
-			typeM += "Estandar";
+			typeM += "Standard";
 			break;
 		case 2:
-			typeM += "Deportiva";
+			typeM += "Sporty";
 			break;
 		case 3:
 			typeM += "Scooter";
@@ -267,7 +267,7 @@ public class Concessionaire{
 			typeM += "Cross";
 			break;
 		}
-		System.out.println("Capacidad de Gasolina (Por galon)");
+		System.out.println("Gasoline Capacity (Per Gallon)");
 		capacity = sc.nextDouble();
 		System.out.println(concessionaire.addMotorcycle(numMotor,basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeM,capacity,price,year,soatImage,coverageAmount,priceMR,yearMR,mechanicalImage,releasedGases,propertyCard));
 	}
@@ -282,41 +282,41 @@ public class Concessionaire{
 		String type = "";
 		String propertyCard = "";
 
-		System.out.println("Ingrese el numero del motor (ID)");
+		System.out.println("Enter the engine number (ID)");
 		numMotor = sc.next();
-		System.out.println("Ingrese el precio base:");
+		System.out.println("Enter the base price:");
 		basePrice = sc.nextDouble();
 		salePrice = basePrice;
-		System.out.println("Ingrese la marca del Carro");
+		System.out.println("Enter the car brand");
 		mark = sc.next();
-		System.out.println("Ingrese el modelo (año) del Carro");
+		System.out.println("Enter the model (year) of the Car");
 		model = sc.nextInt();
-		System.out.println("Ingrese el cilindraje del Carro");
+		System.out.println("Enter the cylinder capacity of the car");
 		cylinder = sc.nextDouble();
-		System.out.println("Ingrese el kilometraje del Carro");
+		System.out.println("Enter the mileage of the car");
 		mileage = sc.nextDouble();
-		System.out.println("El vehiculo es: \n" +
-		"(1) Nuevo \n" +
-		"(2) Usado" );
+		System.out.println("The vehicle is: \n" +
+		"(1) New \n" +
+		"(2) Used" );
 		optionT = sc.nextInt();
 		switch(optionT){
 		case 1:
-			type += "Nuevo";
+			type += "New";
 			break;
 		case 2:
-			type += "Usado";
+			type += "Used";
 			salePrice += basePrice - (basePrice*0.10);
 			break;
 		}
 		if (optionT==1) {
 			plate = null;
 		}else{
-			System.out.println("Ingrese la placa del Carro");
+			System.out.println("Enter Car Plate");
 			plate = sc.next();
 		}
 
-		System.out.println("El vehiculo ha sido vendido: " + "\n" +
-			"(1) Si \n" +
+		System.out.println("The vehicle has been sold: " + "\n" +
+			"(1) Yes \n" +
 			"(2) No");
 		optionS = sc.nextInt();
 		switch(optionS){
@@ -328,19 +328,19 @@ public class Concessionaire{
 		case 2:
 			break;
 		}
-		System.out.println("Ingrese el año del SOAT");
+		System.out.println("Enter the year of the SOAT");
 		year = sc.nextInt();
-		System.out.println("Ingrese el precio del SOAT");
+		System.out.println("Enter the price of the SOAT");
 		price = sc.nextDouble();
-		System.out.println("Ingrese la cobertura del SOAT");
+		System.out.println("Enter the SOAT coverage");
 		coverageAmount = sc.nextDouble();
 		String soatImage = concessionaire.generateSoatCode();
 		System.out.println(soatImage);
-		System.out.println("Ingrese el año de la Revision-Tecnicomecanica");
+		System.out.println("Enter the year of the Technical-Mechanical Revision");
 		yearMR = sc.nextInt();
-		System.out.println("Ingrese el precio de la Revision-Tecnicomecanica");
+		System.out.println("Enter the price of the Revision-Technical-Mechanical");
 		priceMR = sc.nextDouble();
-		System.out.println("Ingrese los niveles de gases arrojados");
+		System.out.println("Enter the levels of released gases");
 		releasedGases = sc.nextDouble();
 		String mechanicalImage = concessionaire.generateMechanicalCode();
 		System.out.println(mechanicalImage);
@@ -349,9 +349,9 @@ public class Concessionaire{
 			salePrice += basePrice + 500000;	
 		}
 
-		System.out.println("Tipo de Automovil \n" + 
+		System.out.println("Car Type \n" + 
 			"(1) Sedan \n" +
-			"(2) Camioneta");
+			"(2) Van");
 		optionVe = sc.nextInt();
 
 		switch(optionVe){
@@ -359,28 +359,28 @@ public class Concessionaire{
 			typeVh += "Sedan";
 			break;
 		case 2:
-			typeVh += "Camioneta";
+			typeVh += "Van";
 			break;
 		}
-		System.out.println("Ingrese el numero de puertas");
+		System.out.println("Enter the number of doors");
 		numDoor = sc.next();
-		System.out.println("El vehiculo es Polarizado: \n" +
-			"(1) Si \n" +
+		System.out.println("The vehicle is Polarized: \n" +
+			"(1) Yes \n" +
 			"(2) No");
 		optionP = sc.nextInt();
 		switch(optionP){
 		case 1:
-			polarized += "Polarizado";
+			polarized += "polarized";
 			break;
 		case 2:
-			polarized += "NO Polarizado";
+			polarized += "NO polarized";
 			break;
 		}
-		System.out.println("Capacidad del tanque");
+		System.out.println("Tank capacity");
 		capacity = sc.nextDouble();
-		System.out.println("Tipo de Gasolina: \n" +
+		System.out.println("Gasoline Type \n" +
 			"(1) Extra \n" + 
-			"(2) Corriente \n" + 
+			"(2) Current \n" + 
 			"(3) Diesel ");
 		optionG = sc.nextInt();
 		switch (optionG) {
@@ -388,7 +388,7 @@ public class Concessionaire{
 			typeGasoline += "Extra";
 			break;
 		case 2:
-			typeGasoline += "Corriente";
+			typeGasoline += "Current";
 			break;
 		case 3:
 			typeGasoline += "Diesel";
@@ -407,41 +407,41 @@ public class Concessionaire{
 		String type = "";
 		String propertyCard = "";
 
-		System.out.println("Ingrese el numero del motor (ID)");
+		System.out.println("Enter the engine number (ID)");
 		numMotor = sc.next();
-		System.out.println("Ingrese el precio base:");
+		System.out.println("Enter the base price:");
 		basePrice = sc.nextDouble();
 		salePrice = basePrice;
-		System.out.println("Ingrese la marca del Carro");
+		System.out.println("Enter the car brand");
 		mark = sc.next();
-		System.out.println("Ingrese el modelo (año) del Carro");
+		System.out.println("Enter the model (year) of the Car");
 		model = sc.nextInt();
-		System.out.println("Ingrese el cilindraje del Carro");
+		System.out.println("Enter the cylinder capacity of the car");
 		cylinder = sc.nextDouble();
-		System.out.println("Ingrese el kilometraje del Carro");
+		System.out.println("Enter the mileage of the car");
 		mileage = sc.nextDouble();
-		System.out.println("El vehiculo es: \n" +
-		"(1) Nuevo \n" +
-		"(2) Usado" );
+		System.out.println("The vehicle is: \n" +
+		"(1) New \n" +
+		"(2) Used" );
 		optionT = sc.nextInt();
 		switch(optionT){
 		case 1:
-			type += "Nuevo";
+			type += "New";
 			break;
 		case 2:
-			type += "Usado";
+			type += "Used";
 			salePrice += basePrice - (basePrice*0.10);
 			break;
 		}
 		if (optionT==1) {
 			plate = null;
 		}else{
-			System.out.println("Ingrese la placa del Carro");
+			System.out.println("Enter Car Plate");
 			plate = sc.next();
 		}
 		
-		System.out.println("El vehiculo ha sido vendido: " + "\n" +
-			"(1) Si \n" +
+		System.out.println("The vehicle has been sold: " + "\n" +
+			"(1) Yes \n" +
 			"(2) No");
 		optionS = sc.nextInt();
 		switch(optionS){
@@ -453,19 +453,19 @@ public class Concessionaire{
 		case 2:
 			break;
 		}
-		System.out.println("Ingrese el año del SOAT");
+		System.out.println("Enter the year of the SOAT");
 		year = sc.nextInt();
-		System.out.println("Ingrese el precio del SOAT");
+		System.out.println("Enter the price of the SOAT");
 		price = sc.nextDouble();
-		System.out.println("Ingrese la cobertura del SOAT");
+		System.out.println("Enter the SOAT coverage");
 		coverageAmount = sc.nextDouble();
 		String soatImage = concessionaire.generateSoatCode();
 		System.out.println(soatImage);
-		System.out.println("Ingrese el año de la Revision-Tecnicomecanica");
+		System.out.println("Enter the year of the Technical-Mechanical Revision");
 		yearMR = sc.nextInt();
-		System.out.println("Ingrese el precio de la Revision-Tecnicomecanica");
+		System.out.println("Enter the price of the Revision-Technical-Mechanical");
 		priceMR = sc.nextDouble();
-		System.out.println("Ingrese los niveles de gases arrojados");
+		System.out.println("Enter the levels of released gases");
 		releasedGases = sc.nextDouble();
 		String mechanicalImage = concessionaire.generateMechanicalCode();
 		System.out.println(mechanicalImage);
@@ -475,9 +475,10 @@ public class Concessionaire{
 		}
 		salePrice += basePrice + (basePrice*0.20);
 
-		System.out.println("Tipo de Automovil \n" + 
+
+		System.out.println("Car Type \n" + 
 			"(1) Sedan \n" +
-			"(2) Camioneta");
+			"(2) Van");
 		optionVe = sc.nextInt();
 
 		switch(optionVe){
@@ -485,36 +486,36 @@ public class Concessionaire{
 			typeVh += "Sedan";
 			break;
 		case 2:
-			typeVh += "Camioneta";
+			typeVh += "Van";
 			break;
 		}
-		System.out.println("Ingrese el numero de puertas");
+		System.out.println("Enter the number of doors");
 		numDoor = sc.next();
-		System.out.println("El vehiculo es Polarizado: \n" +
-			"(1) Si \n" +
+		System.out.println("The vehicle is Polarized: \n" +
+			"(1) Yes \n" +
 			"(2) No");
 		optionP = sc.nextInt();
 		switch(optionP){
 		case 1:
-			polarized += "Polarizado";
+			polarized += "polarized";
 			break;
 		case 2:
-			polarized += "NO Polarizado";
+			polarized += "NO polarized";
 			break;
 		}
-		System.out.println("Tipo de cargador: \n" +
-			"(1) Rapido \n" +
+		System.out.println("Charger Type: \n" +
+			"(1) Fast \n" +
 			"(2) Normal");
 		optionC = sc.nextInt();
 		switch (optionC) {
 		case 1:
-			chargertype += "Rapido";
+			chargertype += "Fast";
 			break;
 		case 2:
 			chargertype += "Normal";
 			break;
 		}
-		System.out.println("Ingrese la duracion de la bateria (Por Km)");
+		System.out.println("Enter the battery life (Per Km)");
 		batteryDuration = sc.nextDouble();
 		
 
@@ -532,41 +533,41 @@ public class Concessionaire{
 		String type = "";
 		String propertyCard = "";
 
-		System.out.println("Ingrese el numero del motor (ID)");
+		System.out.println("Enter the engine number (ID)");
 		numMotor = sc.next();
-		System.out.println("Ingrese el precio base:");
+		System.out.println("Enter the base price:");
 		basePrice = sc.nextDouble();
 		salePrice = basePrice;
-		System.out.println("Ingrese la marca del Carro");
+		System.out.println("Enter the car brand");
 		mark = sc.next();
-		System.out.println("Ingrese el modelo (año) del Carro");
+		System.out.println("Enter the model (year) of the Car");
 		model = sc.nextInt();
-		System.out.println("Ingrese el cilindraje del Carro");
+		System.out.println("Enter the cylinder capacity of the car");
 		cylinder = sc.nextDouble();
-		System.out.println("Ingrese el kilometraje del Carro");
+		System.out.println("Enter the mileage of the car");
 		mileage = sc.nextDouble();
-		System.out.println("El vehiculo es: \n" +
-		"(1) Nuevo \n" +
-		"(2) Usado" );
+		System.out.println("The vehicle is: \n" +
+		"(1) New \n" +
+		"(2) Used" );
 		optionT = sc.nextInt();
 		switch(optionT){
 		case 1:
-			type += "Nuevo";
+			type += "New";
 			break;
 		case 2:
-			type += "Usado";
+			type += "Used";
 			salePrice += basePrice - (basePrice*0.10);
 			break;
 		}
 		if (optionT==1) {
 			plate = null;
 		}else{
-			System.out.println("Ingrese la placa del Carro");
+			System.out.println("Enter Car Plate");
 			plate = sc.next();
 		}
-		
-		System.out.println("El vehiculo ha sido vendido: " + "\n" +
-			"(1) Si \n" +
+
+		System.out.println("The vehicle has been sold: " + "\n" +
+			"(1) Yes \n" +
 			"(2) No");
 		optionS = sc.nextInt();
 		switch(optionS){
@@ -578,19 +579,19 @@ public class Concessionaire{
 		case 2:
 			break;
 		}
-		System.out.println("Ingrese el año del SOAT");
+		System.out.println("Enter the year of the SOAT");
 		year = sc.nextInt();
-		System.out.println("Ingrese el precio del SOAT");
+		System.out.println("Enter the price of the SOAT");
 		price = sc.nextDouble();
-		System.out.println("Ingrese la cobertura del SOAT");
+		System.out.println("Enter the SOAT coverage");
 		coverageAmount = sc.nextDouble();
 		String soatImage = concessionaire.generateSoatCode();
 		System.out.println(soatImage);
-		System.out.println("Ingrese el año de la Revision-Tecnicomecanica");
+		System.out.println("Enter the year of the Technical-Mechanical Revision");
 		yearMR = sc.nextInt();
-		System.out.println("Ingrese el precio de la Revision-Tecnicomecanica");
+		System.out.println("Enter the price of the Revision-Technical-Mechanical");
 		priceMR = sc.nextDouble();
-		System.out.println("Ingrese los niveles de gases arrojados");
+		System.out.println("Enter the levels of released gases");
 		releasedGases = sc.nextDouble();
 		String mechanicalImage = concessionaire.generateMechanicalCode();
 		System.out.println(mechanicalImage);
@@ -598,11 +599,10 @@ public class Concessionaire{
 		if (year<2022 || yearMR<2022){
 			salePrice += basePrice + 500000;	
 		}
-		salePrice += basePrice + (basePrice*0.15);
 
-		System.out.println("Tipo de Automovil \n" + 
+		System.out.println("Car Type \n" + 
 			"(1) Sedan \n" +
-			"(2) Camioneta");
+			"(2) Van");
 		optionVe = sc.nextInt();
 
 		switch(optionVe){
@@ -610,42 +610,43 @@ public class Concessionaire{
 			typeVh += "Sedan";
 			break;
 		case 2:
-			typeVh += "Camioneta";
+			typeVh += "Van";
 			break;
 		}
-		System.out.println("Ingrese el numero de puertas");
+		System.out.println("Enter the number of doors");
 		numDoor = sc.next();
-		System.out.println("El vehiculo es Polarizado: \n" +
-			"(1) Si \n" +
+		System.out.println("The vehicle is Polarized: \n" +
+			"(1) Yes \n" +
 			"(2) No");
 		optionP = sc.nextInt();
 		switch(optionP){
 		case 1:
-			polarized += "Polarizado";
+			polarized += "polarized";
 			break;
 		case 2:
-			polarized += "NO Polarizado";
+			polarized += "NO polarized";
 			break;
 		}
-		System.out.println("Tipo de cargador: \n" +
-			"(1) Rapido \n" +
+
+		System.out.println("Charger Type: \n" +
+			"(1) Fast \n" +
 			"(2) Normal");
 		optionC = sc.nextInt();
 		switch (optionC) {
 		case 1:
-			chargertype += "Rapido";
+			chargertype += "Fast";
 			break;
 		case 2:
 			chargertype += "Normal";
 			break;
 		}
-		System.out.println("Ingrese la duracion de la bateria (Por Km");
+		System.out.println("Enter the battery life (Per Km)");
 		batteryDuration = sc.nextDouble();
-		System.out.println("Capacidad del tanque");
+		System.out.println("Tank capacity");
 		capacity = sc.nextDouble();
-		System.out.println("Tipo de Gasolina: \n" +
+		System.out.println("Gasoline Type: \n" +
 			"(1) Extra \n" + 
-			"(2) Corriente \n" + 
+			"(2) Current \n" + 
 			"(3) Diesel ");
 		optionG = sc.nextInt();
 		switch (optionG) {
@@ -653,7 +654,7 @@ public class Concessionaire{
 			typeGasoline += "Extra";
 			break;
 		case 2:
-			typeGasoline += "Corriente";
+			typeGasoline += "Current";
 			break;
 		case 3:
 			typeGasoline += "Diesel";
@@ -688,7 +689,7 @@ public class Concessionaire{
 		System.out.println(concessionaire.generateReportUsed());
 	}
 	public void showReportDocuments(){
-		System.out.println("Ingrese el numero de motor (ID)");
+		System.out.println("Enter the engine number (ID)");
 		String id = sc.next();
 		System.out.println(concessionaire.documentsById(id));
 	}
@@ -708,7 +709,7 @@ public class Concessionaire{
 	public void generateReportByOcupation(){
 		int ocupation = concessionaire.lotParkingOcupation();
 		double ocupationPercentage = (ocupation/50)*100;
-		System.out.println("La ocupacion del Parqueadero esta al " + ocupationPercentage +"%");
+		System.out.println("The occupation of the parking lot is at " + ocupationPercentage +"%");
 
 	}
 

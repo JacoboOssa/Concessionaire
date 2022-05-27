@@ -24,32 +24,108 @@ public class Controller{
 
 	}
 
+	/**
+	* register a motorcycle, along with Soat and mechanical technical review<br>
+	* <b> pos:</b> a new object is added to the arraylist
+	* @param <numMotor> String; vehicle identifier
+	* @param <basePrice> double; base price of the vehicle
+	* @param <salePrice> double; selling price of the vehicle
+	* @param <mark> String; Vehicle brand
+	* @param <model> int; vehicle model year
+	* @param <cylinder> double; vehicle engine cylinder
+	* @param <mileage> double; mileage traveled by the vehicle
+	* @param <type> String; new or used
+	* @param <plate> String; vehicle license plate (if used)
+	* @param <typeM> String; type of motorcycle
+	* @param <capacity> double; gasoline capacity (per km)
+	* @param <price> double; Soat price
+	* @param <year> int; soat year
+	* @param <soatImage> String; soat code
+	* @param <coverageAmount> double; amount coverage of the soat
+	* @param <priceMR> double; Mechanical Review price
+	* @param <yearMR> int; Mechanical Review year 
+	* @param <mechanicalImage> String; Mechanical Review code
+	* @param <releasedGases> double; result of the technical-mechanical review
+	* @param <propertyCard>  String; property card code 
+	*/
+
 	public String addMotorcycle(String numMotor, double basePrice,double salePrice, String mark, int model, double cylinder, double mileage,String type, String plate ,String typeM,double capacity,
 		double price,int year,String soatImage,double coverageAmount,double priceMR, int yearMR,String mechanicalImage, double releasedGases,String propertyCard){
 		String out =  "";
 		Soat newSoat = new Soat(price,year,soatImage,coverageAmount);
 		MechanicalReview newMechanicalR = new MechanicalReview(priceMR,yearMR,mechanicalImage,releasedGases);
 		vehicule.add(new Motorcycle(numMotor, basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeM,capacity,newSoat,newMechanicalR,propertyCard));
-		out += "Registro de moto Exitoso";
+		out += "Motorcycle Registration Successful";
 		return out;
 	}
 
+	/**
+	* register a car of Gasoline, along with Soat and mechanical technical review<br>
+	* <b> pos:</b> a new object is added to the arraylist
+	* @param <numMotor> String; vehicle identifier
+	* @param <basePrice> double; base price of the vehicle
+	* @param <salePrice> double; selling price of the vehicle
+	* @param <mark> String; Vehicle brand
+	* @param <model> int; vehicle model year
+	* @param <cylinder> double; vehicle engine cylinder
+	* @param <mileage> double; mileage traveled by the vehicle
+	* @param <type> String; new or used
+	* @param <plate> String; vehicle license plate (if used)
+	* @param <typeVH> String; type of car (sedan/van)
+	* @param <numDoor> String; number of vehicle doors
+	* @param <polarized> String; the vehicle is polarized(yes/no)
+	* @param <capacity> double; gasoline capacity (per km)
+	* @param <typeGasoline> String; type of car (sedan/van)
+	* @param <price> double; Soat price
+	* @param <year> int; soat year
+	* @param <soatImage> String; soat code
+	* @param <coverageAmount> double; amount coverage of the soat
+	* @param <priceMR> double; Mechanical Review price
+	* @param <yearMR> int; Mechanical Review year 
+	* @param <mechanicalImage> String; Mechanical Review code
+	* @param <releasedGases> double; result of the technical-mechanical review
+	* @param <propertyCard>  String; property card code 
+	*/
 	public String addGasolineCar(String numMotor, double basePrice,double salePrice, String mark, int model, double cylinder, double mileage,String type, String plate,String typeVh, String numDoor, String polarized, double capacity, String typeGasoline,
 		double price,int year,String soatImage,double coverageAmount,double priceMR, int yearMR,String mechanicalImage,double releasedGases,String propertyCard){
 		String out = "";
 		Soat newSoat = new Soat(price,year,soatImage,coverageAmount);
 		MechanicalReview newMechanicalR = new MechanicalReview(priceMR,yearMR,mechanicalImage,releasedGases);
 		vehicule.add(new Gasoline(numMotor, basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeVh,numDoor,polarized,capacity,typeGasoline,newSoat,newMechanicalR,propertyCard));
-		out += "Registro de carro a Gasolina exitoso";
-		for (int i=0;i<MAX_FILAS;i++){
-			for (int j=0;j<MAX_COLUMNAS;j++){
-				parking[i][0] =1;
-			}
-			
-		}
+		out += "Gasoline car registration successful";
 		return out;
 
 	}
+
+	/**
+	* register a car of Electric, along with Soat and mechanical technical review<br>
+	* <b> pos:</b> a new object is added to the arraylist
+	* @param <numMotor> String; vehicle identifier
+	* @param <basePrice> double; base price of the vehicle
+	* @param <salePrice> double; selling price of the vehicle
+	* @param <mark> String; Vehicle brand
+	* @param <model> int; vehicle model year
+	* @param <cylinder> double; vehicle engine cylinder
+	* @param <mileage> double; mileage traveled by the vehicle
+	* @param <type> String; new or used
+	* @param <plate> String; vehicle license plate (if used)
+	* @param <typeVH> String; type of car (sedan/van)
+	* @param <numDoor> String; number of vehicle doors
+	* @param <polarized> String; the vehicle is polarized(yes/no)
+	* @param <chargerType> String; charger type (fast/normal)
+	* @param <batteryDuration> double; vehicle battery life
+	* @param <capacity> double; gasoline capacity (per km)
+	* @param <typeGasoline> String; type of car (sedan/van)
+	* @param <price> double; Soat price
+	* @param <year> int; soat year
+	* @param <soatImage> String; soat code
+	* @param <coverageAmount> double; amount coverage of the soat
+	* @param <priceMR> double; Mechanical Review price
+	* @param <yearMR> int; Mechanical Review year 
+	* @param <mechanicalImage> String; Mechanical Review code
+	* @param <releasedGases> double; result of the technical-mechanical review
+	* @param <propertyCard>  String; property card code 
+	*/
 
 	public String addElectricCar(String numMotor, double basePrice,double salePrice, String mark, int model, double cylinder, double mileage,String type, String plate , String typeVh, String numDoor, String polarized,String chargertype, double batteryDuration,
 		double price,int year,String soatImage,double coverageAmount,double priceMR, int yearMR,String mechanicalImage,double releasedGases,String propertyCard){
@@ -57,9 +133,41 @@ public class Controller{
 		Soat newSoat = new Soat(price,year,soatImage,coverageAmount);
 		MechanicalReview newMechanicalR = new MechanicalReview(priceMR,yearMR,mechanicalImage,releasedGases);
 		vehicule.add(new Electric(numMotor, basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeVh,numDoor,polarized,chargertype,batteryDuration,newSoat,newMechanicalR,propertyCard));
-		out += "Registro de carro Electrico exitoso";
+		out += "Successful electric car registration";
 		return out;
 	}
+
+	/**
+	* register a car of Hybrid, along with Soat and mechanical technical review<br>
+	* <b> pos:</b> a new object is added to the arraylist
+	* @param <numMotor> String; vehicle identifier
+	* @param <basePrice> double; base price of the vehicle
+	* @param <salePrice> double; selling price of the vehicle
+	* @param <mark> String; Vehicle brand
+	* @param <model> int; vehicle model year
+	* @param <cylinder> double; vehicle engine cylinder
+	* @param <mileage> double; mileage traveled by the vehicle
+	* @param <type> String; new or used
+	* @param <plate> String; vehicle license plate (if used)
+	* @param <typeVH> String; type of car (sedan/van)
+	* @param <numDoor> String; number of vehicle doors
+	* @param <polarized> String; the vehicle is polarized(yes/no)
+	* @param <capacity> double; gasoline capacity (per km)
+	* @param <typeGasoline> String; type of car (sedan/van)
+	* @param <chargerType> String; charger type (fast/normal)
+	* @param <batteryDuration> double; vehicle battery life
+	* @param <capacity> double; gasoline capacity (per km)
+	* @param <typeGasoline> String; type of car (sedan/van)
+	* @param <price> double; Soat price
+	* @param <year> int; soat year
+	* @param <soatImage> String; soat code
+	* @param <coverageAmount> double; amount coverage of the soat
+	* @param <priceMR> double; Mechanical Review price
+	* @param <yearMR> int; Mechanical Review year 
+	* @param <mechanicalImage> String; Mechanical Review code
+	* @param <releasedGases> double; result of the technical-mechanical review
+	* @param <propertyCard>  String; property card code 
+	*/
 
 	public String addHybridCar(String numMotor, double basePrice,double salePrice, String mark, int model, double cylinder, double mileage,String type, String plate,String typeVh, String numDoor, String polarized,double capacity, String typeGasoline,String chargertype,double batteryDuration,
 		double price,int year,String soatImage,double coverageAmount,double priceMR, int yearMR,String mechanicalImage,double releasedGases,String propertyCard){
@@ -67,9 +175,15 @@ public class Controller{
 		Soat newSoat = new Soat(price,year,soatImage,coverageAmount);
 		MechanicalReview newMechanicalR = new MechanicalReview(priceMR,yearMR,mechanicalImage,releasedGases);
 		vehicule.add(new Hybrid(numMotor, basePrice,salePrice,mark,model,cylinder,mileage,type,plate,typeVh,numDoor,polarized,capacity,typeGasoline,chargertype,batteryDuration,newSoat,newMechanicalR,propertyCard));
-		out += "Registro de carro Hibrido exitoso";
+		out += "Successful Hybrid car registration";
 		return out;
 	}
+
+	/**
+	* Randomly generate an array and loop through L<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> a Soat code is saved for the vehicle.
+	*/
 
 
 	public String generateSoatCode(){
@@ -91,6 +205,12 @@ public class Controller{
 
 		return out;
 	}
+
+	/**
+	* Randomly generate an array and loop through Z<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> a Mechanical Review code is saved for the vehicle.
+	*/
 
 	public String generateMechanicalCode(){
 		String out = "";
@@ -116,6 +236,12 @@ public class Controller{
 		return out;
 	}
 
+	/**
+	* Randomly generate an array and loop through a pattern to generate code<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> a property Card code is saved for the vehicle.
+	*/
+
 	public String generatePropertyCode(){
 		String out = "";
 
@@ -140,6 +266,13 @@ public class Controller{
 		return out;
 	}
 
+
+
+	/**
+	* Report under the criteria of being a Car<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> generate vehicle report
+	*/
 	public String generateReportCar(){
 		String out = "";
 		for (int i=0;i<vehicule.size();i++){
@@ -150,6 +283,11 @@ public class Controller{
 
 		return out;
 	}
+	/**
+	* Report under the criteria of being a Motorcycle<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> generate vehicle report
+	*/
 
 	public String generateReportMotorcycle(){
 		String out = "";
@@ -162,6 +300,11 @@ public class Controller{
 
 		return out;
 	}
+	/**
+	* Report under the criteria of being a Gasoline Car<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> generate vehicle report
+	*/
 
 	public String generateReportGasoline(){
 		String out = "";
@@ -175,6 +318,11 @@ public class Controller{
 		return out;
 	}
 
+	/**
+	* Report under the criteria of being a Electric Car<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> generate vehicle report
+	*/
 	public String generateReportElectric(){
 		String out = "";
 
@@ -187,6 +335,12 @@ public class Controller{
 		return out;
 	}
 
+	/**
+	* Report under the criteria of being a Hybrid Car<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> generate vehicle report
+	*/
+
 	public String generateReportHybrid(){
 		String out = "";
 
@@ -198,6 +352,11 @@ public class Controller{
 
 		return out;
 	}
+	/**
+	* Report under the criteria of being a new Vehicule<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> generate vehicle report
+	*/
 	
 	public String generateReportNew(){
 		String out = "";
@@ -205,7 +364,7 @@ public class Controller{
 
 		for (int i=0;i<vehicule.size();i++){
 			if (vehicule.get(i) instanceof Vehicule){
-				if(vehicule.get(i).getType().equalsIgnoreCase("Nuevo")){
+				if(vehicule.get(i).getType().equalsIgnoreCase("New")){
 					out+=(vehicule.get(i).toString());
 				}
 			}
@@ -213,19 +372,32 @@ public class Controller{
 
 		return out;
 	}
+
+	/**
+	* Report under the criteria of being a used Vehicule<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> generate vehicle report
+	*/
+
 	public String generateReportUsed(){
 		String out = "";
 		String type = "";
 
 		for (int i=0;i<vehicule.size();i++){
 			if (vehicule.get(i) instanceof Vehicule){
-				if(vehicule.get(i).getType().equalsIgnoreCase("Usado")){
+				if(vehicule.get(i).getType().equalsIgnoreCase("Used")){
 					out+=(vehicule.get(i).toString());
 				}
 			}
 		}
 		return out;
 	}
+
+	/**
+	* Generate Soat report and technical-mechanical review by the ID of a vehicle<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> generate documents report by id 
+	*/
 
 	public String documentsById(String id){
 		String out ="";
@@ -233,24 +405,24 @@ public class Controller{
 		for (int i=0;i<vehicule.size();i++){
 			if (vehicule.get(i).getNumMotor().equals(id)){
 				if (vehicule.get(i).getPropertyCard() == null){
-					out+= "No tiene tarjeta de propiedad";
+					out+= "Does not have property card";
 				}else {
-					out+= "El codigo de la tarjeta de propiedad es: " + vehicule.get(i).getPropertyCard() + "\n";			
+					out+= "The property card code is:" + vehicule.get(i).getPropertyCard() + "\n";			
 				}
 				
 				if (vehicule.get(i).getSoatYear()==2022){
-					out += "\nSOAT vigente" + "\n" +
+					out += "\nSOAT valid" + "\n" +
 					vehicule.get(i).getSoatInfo();	
 				}else{
-					out += "\nSOAT expirado" + "\n" + 
+					out += "\nSOAT expired" + "\n" + 
 					vehicule.get(i).getSoatInfo();
 				}
 
 				if (vehicule.get(i).getMechanicalrYear()==2022){
-					out += "\nRevision Tecnico-Mecanica vigente" + "\n" +
+					out += "\nRevision Tecnico-Mecanica valid" + "\n" +
 					vehicule.get(i).getMechanicalrInfo() + "\n";		
 				}else{
-					out += "\nRevision Tecnico-Mecanica expirada" + "\n" +
+					out += "\nRevision Tecnico-Mecanica expired" + "\n" +
 					vehicule.get(i).getMechanicalrInfo() + "\n";	
 				}
 			}	
@@ -259,6 +431,10 @@ public class Controller{
 		return out;
 	}
 
+	/**
+	* Create the parking lot of size 10x5 with 0<br>
+	* <b> pos:</b> generate parking map 
+	*/
 	public String createParkingLot(){
 
 		String print ="";
@@ -273,35 +449,42 @@ public class Controller{
 
     }
 
+   	/**
+	* create the report in a range of years<br>
+	* <b> pre:</b> register a vehicle<br>
+	* <b> pos:</b> show information aboout this vehicules
+	*/
+
     
     public String createReportByYears(){
     	String out = "";
     	for (int i=0;i<vehicule.size();i++){
 
     		if (vehicule.get(i).getModel()==2014) {
-    			out+= "Vehiculos 2014: \n" + 
+    			out+= "Vehicules 2014: \n" + 
     			vehicule.get(i).toString();
 			}
 			if (vehicule.get(i).getModel()==2013) {
-    			out+= "Vehiculos 2013: \n" + 
+    			out+= "Vehicules 2013: \n" + 
     			vehicule.get(i).toString();
 			}	
 			if (vehicule.get(i).getModel()==2012) {
-    			out+= "Vehiculos 2012: \n" + 
+    			out+= "Vehicules 2012: \n" + 
     			vehicule.get(i).toString();
 			}	
 			if (vehicule.get(i).getModel()==2011) {
-    			out+= "Vehiculos 2011: \n" + 
+    			out+= "Vehicules 2011: \n" + 
     			vehicule.get(i).toString();
 			}	
 			if (vehicule.get(i).getModel()<2011) {
-    			out+= "Vehiculos modelos menores a 2011: \n" + 
+    			out+= "Vehiculesmodels less than 2011: \n" + 
     			vehicule.get(i).toString();
 			}		
     	}
 
     	return out;
     }
+
 
     public String createReportByModel(){
     	String out = "";
@@ -351,12 +534,13 @@ public class Controller{
     		}
     	 		
     	} 	
-    	out += "El vehiculo mas viejo es: " + oldest + "\n" +
-    	"El vehiculo mas nuevo es: " + newest + "\n";
+    	out += "The oldest vehicle is: " + oldest + "\n" +
+    	"The newest vehicle is:" + newest + "\n";
 
     	return out;
     
     }
+
 
      public int lotParkingOcupation(){
         int cont =0;
@@ -370,9 +554,7 @@ public class Controller{
         }
 
         return cont;
-    }
-    
-
+    }    
 	 
 	public String showVehicules(){
 		String out = "";

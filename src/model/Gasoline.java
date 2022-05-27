@@ -27,22 +27,22 @@ public class Gasoline extends Car implements Consume{
 
 	public String toString(){
 		double consumeG = calculateConsumeGasoline(capacity,cylinder);
-		return "Numero de motor (ID) " + numMotor+ "\n" +
-		"Tarjeta de propiedad: " + propertyCard + "\n" +
-		"Precio base: " + basePrice + "\n" +
-		"Precio de venta: " + salePrice + "\n" +
-		"Marca: " + mark + "\n" +
-		"Modelo: " + model + "\n" + 
-		"Cilindraje: " + cylinder + "\n" +
-		"Kilometraje: " + mileage + "\n" +
-		"Tipo (Nuevo o Usado): " + type + "\n" +
-		"Placa: " + plate + "\n" +
-		"Tipo de Vehiculo (Sedan o Camioneta): " + typeVh + "\n" +
-		"Numero de puertas: " + numDoor + "\n" +
-		polarized + "\n" + 
-		"Capacidad del tanque: " + capacity + "\n" +
-		"Tipo de Gasolina: " + typeGasoline + "\n" + 
-		"Consumo de Gasolina: " +consumeG + "\n";
+		return "Engine number (ID) " + numMotor+ "\n" +
+		"Property card:" + propertyCard + "\n" +
+		"Base price: " + basePrice + "\n" +
+		"Sale price:" + salePrice + "\n" +
+		"Brand: " + mark + "\n" +
+		"Model: " + model + "\n" + 
+		"Cylinder capacity: " + cylinder + "\n" +
+		"Mileage: " + mileage + "\n" +
+		"Type (New or Used): " + type + "\n" +
+		"License plate: " + plate + "\n" +
+		"Vehicle Type (Sedan or Truck): " + typeVh + "\n" +
+		"Number of doors: " + numDoor + "\n" +
+		polarized + "\n" +
+		"Tank Capacity: " + capacity + "\n" +
+		"Gasoline Type: " + typeGasoline + "\n" +
+		"Gasoline consumption: " + consumeG;
 	}
 
 	public String getTypeVh(){
